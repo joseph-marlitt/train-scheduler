@@ -16,18 +16,21 @@
   database.ref('/trains').orderByChild("dateAdded").on("child_added",function(snapshot) {
     var sv = snapshot.val();
 
+    console.log(sv.dateAdded)
     console.log(snapshot);
     console.log(sv.name);
     console.log(sv.destination);
     console.log(sv.first);
     console.log(sv.frequency);
 
-    var firstTrain = moment(sv.first, "")
-    var convertedDate = moment(sv.date, randomFormat);
-    var months = moment().diff(moment(convertedDate), 'months');
-    var billed = (months * sv.frequency)
+    var firstTrain = moment(sv.first, "HH:mm");
+    var currentTime = moment.unix(sv.dateAdded);
+    var now = moment();
+      
+    var nextArrival = moment(firstTrain).add(moment(frequency), 'minutes');
+    
 
-    $('#data').append('<tr><td>' + sv.name + '</td><td>' + sv.destination  + '</td><td>' + sv.frequency  + ' min' + '</td><td>' + sv.frequency + '</td></tr>');
+    $('#data').append('<tr><td>' + sv.name + '</td><td>' + sv.destination  + '</td><td>' + sv.frequency  + ' min' + '</td><td>' + nextArrival + " minutes" + '</td></tr>');
 
   })
 
@@ -50,6 +53,7 @@
     var destination = $('#destination-input').val().trim();
     var first = $('#first-input').val().trim();
     var frequency = $('#frequency-input').val().trim();
+    // var dateAdded = 
     database.ref('/trains').push({
         name : name,
         destination : destination,
