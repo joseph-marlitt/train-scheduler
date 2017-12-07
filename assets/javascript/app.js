@@ -22,12 +22,12 @@
     console.log(sv.first);
     console.log(sv.frequency);
 
-    var randomFormat = 'MM/DD/YYYY';
+    var firstTrain = moment(sv.first, "")
     var convertedDate = moment(sv.date, randomFormat);
     var months = moment().diff(moment(convertedDate), 'months');
     var billed = (months * sv.frequency)
 
-    $('#data').append('<tr><td>' + sv.name + '</td><td>' + sv.destination  + '</td><td>' + sv.frequency  + '</td><td>' + months  + '</td><td>' + sv.frequency  + '</td><td>' +  + '</td></tr>');
+    $('#data').append('<tr><td>' + sv.name + '</td><td>' + sv.destination  + '</td><td>' + sv.frequency  + ' min' + '</td><td>' + sv.frequency + '</td></tr>');
 
   })
 
