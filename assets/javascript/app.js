@@ -1,44 +1,44 @@
-var config = {
-    apiKey: "AIzaSyAAV98q-NDFbTMThEGX6FLB0ybcSk1YK4s",
-    authDomain: "employee-f2a35.firebaseapp.com",
-    databaseURL: "https://employee-f2a35.firebaseio.com",
-    projectId: "employee-f2a35",
-    storageBucket: "employee-f2a35.appspot.com",
-    messagingSenderId: "367131918224"
+ var config = {
+    apiKey: "AIzaSyAwOljbMh2lY29DxPbS5yVEAf6uyY2EkM4",
+    authDomain: "train-scheduler-3ef5b.firebaseapp.com",
+    databaseURL: "https://train-scheduler-3ef5b.firebaseio.com",
+    projectId: "train-scheduler-3ef5b",
+    storageBucket: "train-scheduler-3ef5b.appspot.com",
+    messagingSenderId: "288749849253"
   };
   firebase.initializeApp(config);
  
   var database = firebase.database();
-  database.ref('/employees').orderByChild("dateAdded").on("child_added", function() {
+  database.ref('/trains').orderByChild("dateAdded").on("child_added", function() {
 
   })
 
-  database.ref('/employees').orderByChild("dateAdded").on("child_added",function(snapshot) {
+  database.ref('/trains').orderByChild("dateAdded").on("child_added",function(snapshot) {
     var sv = snapshot.val();
 
     console.log(snapshot);
     console.log(sv.name);
-    console.log(sv.role);
-    console.log(sv.date);
-    console.log(sv.rate);
+    console.log(sv.destination);
+    console.log(sv.first);
+    console.log(sv.frequency);
 
     var randomFormat = 'MM/DD/YYYY';
     var convertedDate = moment(sv.date, randomFormat);
     var months = moment().diff(moment(convertedDate), 'months');
-    var billed = (months * sv.rate)
+    var billed = (months * sv.frequency)
 
-    $('#data').append('<tr><td>' + sv.name + '</td><td>' + sv.role  + '</td><td>' + sv.date  + '</td><td>' + months  + '</td><td>' + sv.rate  + '</td><td>' + billed + '</td></tr>');
+    $('#data').append('<tr><td>' + sv.name + '</td><td>' + sv.destination  + '</td><td>' + sv.frequency  + '</td><td>' + months  + '</td><td>' + sv.frequency  + '</td><td>' +  + '</td></tr>');
 
   })
 
 
 
-  database.ref('/employees').orderByChild("dateAdded").on("child_added",function(snapshot) {
+  database.ref('/trains').orderByChild("dateAdded").on("child_added",function(snapshot) {
     var newsv = snapshot.val();
     console.log(newsv);
 
 
-    // $.each(database.ref('/employees', function() {
+    // $.each(database.ref('/trains', function() {
     //     console.log(sv.name);
     // }))
 
@@ -46,16 +46,15 @@ var config = {
 
   $("#submit").on('click', function() {
     event.preventDefault();
-    var name = $('#name-input').val().trim();
-    var role = $('#role-input').val().trim();
-    var date = $('#date-input').val().trim();
-    // var months = $('#months-input').val().trim();
-    var rate = $('#rate-input').val().trim();
-    database.ref('/employees').push({
+    var name = $('#train-input').val().trim();
+    var destination = $('#destination-input').val().trim();
+    var first = $('#first-input').val().trim();
+    var frequency = $('#frequency-input').val().trim();
+    database.ref('/trains').push({
         name : name,
-        role : role,
-        date : date,
-        rate : rate,
+        destination : destination,
+        first : first,
+        frequency : frequency,
         dateAdded : firebase.database.ServerValue.TIMESTAMP
     })
   })

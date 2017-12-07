@@ -3,12 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Employee Data Management</title>
+    <title>Train Schedule Updater</title>
     <!-- Bootswatch Styling for Improving the Aesthetics -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/flatly/bootstrap.min.css">
     <!-- Font Awesome CSS Icons (For cool glyphicons) -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- Style to fix the issue of text extending past panel length -->
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
     <style>
     .panel-body a {
         word-break: break-all;
@@ -21,7 +22,7 @@
     <div class="container">
         <!-- Jumbotron for Title and Buttons -->
         <div class="jumbotron" style="background-color: #FF4500 ; color: white;">
-            <h1 class="text-center"><strong><i class="fa fa-spreadsheet-o"></i> Employee Data Management</strong></h1>
+            <h1 class="text-center"><strong><i class="fa fa-spreadsheet-o"></i> Reading Railroad Company</strong></h1>
         </div>
         <!-- End Jumbotron -->
         <div class="panel panel-primary">
@@ -31,12 +32,12 @@
                 <div class="">
                     <table class="table table-responsive" id="data">
                         <tr>
-                            <th>Employee Name</th>
-                            <th>Role</th>
-                            <th>Start Date</th>
-                            <th>Months Worked</th>
-                            <th>Monthly Rate ($)</th>
-                            <th>Total Billed</th>
+                            <th>Train Name</th>
+                            <th>Destination</th>
+                            <th>Frequency (min)</th>
+                            <th>Next Arrival</th>
+                            <th>Minutes Away</th>
+                            <!-- <th>Total Billed</th> -->
                         </tr>
                     </table>
                 </div>
@@ -47,25 +48,25 @@
 
                 <form role="form">
                     <div class="form-group">
-                        <label>Employee Name</label>
-                        <input type="text" class="form-control" id="name-input">
+                        <label>Train Name</label>
+                        <input type="text" class="form-control" id="train-input">
                     </div>
                     <div class="form-group">
-                        <label>Role</label>
-                        <input type="text" class="form-control" id="role-input">
+                        <label>Destination</label>
+                        <input type="text" class="form-control" id="destination-input">
                     </div>
                     <div class="form-group">
-                        <label>Start Date</label>
-                        <input type="text" class="form-control" id="date-input">
+                        <label>First Train Time (Military)</label>
+                        <input type="text" class="form-control" id="first-input">
                     </div>
- <!--                    <div class="form-group">
-                        <label>Months Worked</label>
-                        <input type="text" class="form-control" id="months-input">
+                    <div class="form-group">
+                        <label>Frequency (min</label>
+                        <input type="text" class="form-control" id="frequency-input">
+                    </div>
+                    <!-- <div class="form-group">
+                        <label>Minutes Away</label>
+                        <input type="text" class="form-control" id="minAway-input">
                     </div> -->
-                    <div class="form-group">
-                        <label>Monthly Rate ($)</label>
-                        <input type="text" class="form-control" id="rate-input">
-                    </div>
                         <button type="button" id="submit">Submit</button>
                 </form>
             </div>
@@ -84,6 +85,7 @@
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.7.0/firebase.js"></script>
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+     <script type="text/javascript" src="./assets/javascript/app.js"></script>
 
 </body>
 
